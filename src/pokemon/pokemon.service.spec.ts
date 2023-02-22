@@ -1,22 +1,8 @@
 import { HttpService } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
+import { of } from 'rxjs';
+import { getPokemonResultMock, getPokemonsResultMock } from './pokemon.mocks';
 import { PokemonService } from './pokemon.service';
-
-const getPokemonsResultMock = {
-  count: 1279,
-  next: 'https://pokeapi.co/api/v2/pokemon?offset=2&limit=2',
-  previous: null,
-  results: [
-    {
-      name: 'bulbasaur',
-      url: 'https://pokeapi.co/api/v2/pokemon/1/',
-    },
-    {
-      name: 'ivysaur',
-      url: 'https://pokeapi.co/api/v2/pokemon/2/',
-    },
-  ],
-};
 
 describe('PokemonService', () => {
   let service: PokemonService;
@@ -24,7 +10,7 @@ describe('PokemonService', () => {
 
   beforeEach(async () => {
     mockedHttpService = {
-      get: jest.fn(() => Promise.resolve()),
+      get: () => Promise.resolve(),
     };
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -44,10 +30,8 @@ describe('PokemonService', () => {
   });
 
   describe('getAllPokemons', () => {
-    it('should return a pokemon response', async () => {
-      mockedHttpService = {
-        get: jest.fn(() => Promise.resolve(getPokemonsResultMock)),
-      };
+    it('should return a pokemonList response', async () => {
+      mockedHttpService.get = () => of(getPokemonsResultMock);
       const pokemons = await service.getAllPokemons();
 
       expect(pokemons).toStrictEqual({
@@ -66,6 +50,50 @@ describe('PokemonService', () => {
           },
         ],
         count: 2,
+      });
+    });
+    describe('getPokemon', () => {
+      it('should return an pokemon object', async () => {
+        mockedHttpService.get = () => of(getPokemonResultMock);
+        const pokemon = await service.getPokemon('ditto');
+
+        expect(pokemon).toStrictEqual({
+          pokemon: {
+            imgSrc:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png',
+            types: ['normal'],
+            moves: ['transform'],
+            stats: [
+              {
+                name: 'hp',
+                base: 48,
+              },
+              {
+                name: 'attack',
+                base: 48,
+              },
+              {
+                name: 'defense',
+                base: 48,
+              },
+              {
+                name: 'special-attack',
+                base: 48,
+              },
+              {
+                name: 'special-defense',
+                base: 48,
+              },
+              {
+                name: 'speed',
+                base: 48,
+              },
+            ],
+            height: 0.3,
+            weight: 4,
+            id: 132,
+          },
+        });
       });
     });
   });
