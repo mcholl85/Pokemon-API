@@ -10,7 +10,7 @@ export type PokemonApiReponse = {
 };
 
 export type PokemonsApiResponse = {
-  count: string;
+  count: number;
   next: string;
   previous: string;
   results: {
