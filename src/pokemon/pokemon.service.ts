@@ -54,16 +54,14 @@ export class PokemonService {
       const theme = types[0];
 
       return {
-        pokemon: {
-          theme,
-          imgSrc,
-          types,
-          moves,
-          stats,
-          height,
-          weight,
-          id,
-        },
+        theme,
+        imgSrc,
+        types,
+        moves,
+        stats,
+        height,
+        weight,
+        id,
       };
     } catch (e) {
       throw new NotFoundException();

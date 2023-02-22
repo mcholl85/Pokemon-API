@@ -58,42 +58,40 @@ describe('PokemonService', () => {
         const pokemon = await service.getPokemon('ditto');
 
         expect(pokemon).toStrictEqual({
-          pokemon: {
-            theme: 'normal',
-            imgSrc:
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png',
-            types: ['normal'],
-            moves: ['transform'],
-            stats: [
-              {
-                name: 'hp',
-                base: 48,
-              },
-              {
-                name: 'attack',
-                base: 48,
-              },
-              {
-                name: 'defense',
-                base: 48,
-              },
-              {
-                name: 'special-attack',
-                base: 48,
-              },
-              {
-                name: 'special-defense',
-                base: 48,
-              },
-              {
-                name: 'speed',
-                base: 48,
-              },
-            ],
-            height: 0.3,
-            weight: 4,
-            id: 132,
-          },
+          theme: 'normal',
+          imgSrc:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png',
+          types: ['normal'],
+          moves: ['transform'],
+          stats: [
+            {
+              name: 'hp',
+              base: 48,
+            },
+            {
+              name: 'attack',
+              base: 48,
+            },
+            {
+              name: 'defense',
+              base: 48,
+            },
+            {
+              name: 'special-attack',
+              base: 48,
+            },
+            {
+              name: 'special-defense',
+              base: 48,
+            },
+            {
+              name: 'speed',
+              base: 48,
+            },
+          ],
+          height: 0.3,
+          weight: 4,
+          id: 132,
         });
       });
     });
