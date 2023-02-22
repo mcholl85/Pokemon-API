@@ -51,9 +51,11 @@ export class PokemonService {
       const weight = data.weight / CONVERT_WEIGHT_INDICES;
       const id = data.id;
       const imgSrc = `${SPRITE_URL}${data.id}${SPRITE_EXTENSION}`;
+      const theme = types[0];
 
       return {
         pokemon: {
+          theme,
           imgSrc,
           types,
           moves,

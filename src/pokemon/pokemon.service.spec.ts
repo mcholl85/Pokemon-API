@@ -59,6 +59,7 @@ describe('PokemonService', () => {
 
         expect(pokemon).toStrictEqual({
           pokemon: {
+            theme: 'normal',
             imgSrc:
               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png',
             types: ['normal'],
